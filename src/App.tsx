@@ -2,12 +2,32 @@ import { useEffect, useState } from "react";
 import { buscarFotos, type Foto } from "./api/pexels";
 import "./App.css";
 
+const CATEGORIAS = [
+  "Naturaleza",
+  "Arquitectura",
+  "Retrato",
+  "Comida",
+  "Viajes",
+  "Minimalista",
+];
+
 function App() {
   const [fotos, setFotos] = useState<Foto[]>([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     buscarFotos("").then(setFotos);
   }, []);
+
+  function manejarBusqueda(e: React.FormEvent) {
+    e.preventDefault();
+    buscarFotos(query).then(setFotos);
+  }
+
+  function buscarCategoria(categoria: string) {
+    setQuery(categoria);
+    buscarFotos(categoria).then(setFotos);
+  }
 
   return (
     <div className="app">
@@ -18,6 +38,28 @@ function App() {
 
       <main className="main">
         <h2 className="hero-title">Encontrá tu próxima inspiración</h2>
+
+        <form className="search-bar" onSubmit={manejarBusqueda}>
+          <input
+            type="text"
+            placeholder="Buscar fotos..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit">Buscar</button>
+        </form>
+
+        <div className="chips">
+          {CATEGORIAS.map((categoria) => (
+            <button
+              key={categoria}
+              className="chip"
+              onClick={() => buscarCategoria(categoria)}
+            >
+              {categoria}
+            </button>
+          ))}
+        </div>
 
         <section className="photo-grid">
           {fotos.map((foto) => (
