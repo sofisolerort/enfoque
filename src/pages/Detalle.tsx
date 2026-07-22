@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { obtenerFoto, type Foto } from "../api/pexels";
+import { useFavoritos } from "../hooks/useFavoritos";
 
 function Detalle() {
   const { id } = useParams();
   const [foto, setFoto] = useState<Foto | null>(null);
   const [cargando, setCargando] = useState(true);
+  const { esFavorito, alternarFavorito } = useFavoritos();
 
   useEffect(() => {
     if (!id) return;
@@ -39,14 +41,22 @@ function Detalle() {
           </a>
         </div>
 
-        <a
-          className="btn-descargar"
-          href={foto.src.original}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Descargar
-        </a>
+        <div className="detalle-acciones">
+          <a
+            className="btn-descargar"
+            href={foto.src.original}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Descargar
+          </a>
+          <button
+            className={`btn-fav-detalle ${esFavorito(foto.id) ? "activo" : ""}`}
+            onClick={() => alternarFavorito(foto)}
+          >
+            ♥ {esFavorito(foto.id) ? "Guardada" : "Guardar"}
+          </button>
+        </div>
       </div>
 
       <div className="metadata">

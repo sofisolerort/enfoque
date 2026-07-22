@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { buscarFotos, type Foto } from "../api/pexels";
 import { Link } from "react-router-dom";
+import { useFavoritos } from "../hooks/useFavoritos";
 
 const CATEGORIAS = [
   "Naturaleza",
@@ -16,6 +17,7 @@ function Home() {
   const [query, setQuery] = useState("");
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState(false);
+  const { esFavorito, alternarFavorito } = useFavoritos();
 
   useEffect(() => {
     cargarFotos("");
@@ -83,9 +85,22 @@ function Home() {
       {!cargando && !error && fotos.length > 0 && (
         <section className="photo-grid">
           {fotos.map((foto) => (
-            <Link key={foto.id} to={`/foto/${foto.id}`}>
-              <img className="photo-card" src={foto.src.large} alt={foto.alt} />
-            </Link>
+            <div key={foto.id} className="photo-wrapper">
+              <Link to={`/foto/${foto.id}`}>
+                <img
+                  className="photo-card"
+                  src={foto.src.large}
+                  alt={foto.alt}
+                />
+              </Link>
+              <button
+                className={`btn-fav ${esFavorito(foto.id) ? "activo" : ""}`}
+                onClick={() => alternarFavorito(foto)}
+                aria-label="Guardar en favoritos"
+              >
+                ♥
+              </button>
+            </div>
           ))}
         </section>
       )}

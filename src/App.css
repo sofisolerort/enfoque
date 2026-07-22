@@ -50,9 +50,7 @@
 .photo-card {
   width: 100%;
   border-radius: var(--radius);
-  margin-bottom: 16px;
   break-inside: avoid;
-  aspect-ratio: auto;
 }
 
 .search-bar {
@@ -184,4 +182,90 @@
   height: 16px;
   border-radius: 50%;
   display: inline-block;
+}
+
+.photo-wrapper {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.btn-fav {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--outline);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-fav:hover {
+  transform: scale(1.1);
+}
+.btn-fav.activo {
+  color: var(--primary);
+}
+
+.detalle-acciones {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-fav-detalle {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  color: var(--primary);
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-fav-detalle.activo {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.fav-link {
+  text-decoration: none;
+}
+
+.contador {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.vacio {
+  text-align: center;
+}
+
+.vacio-icono {
+  font-size: 72px;
+  color: var(--outline);
+  opacity: 0.4;
+  margin-bottom: 24px;
+}
+
+.vacio-texto {
+  color: var(--text-muted);
+  margin: 16px 0 32px;
+  font-size: 18px;
 }
