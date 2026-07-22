@@ -12,8 +12,10 @@ export interface Foto {
   photographer_url: string;
   src: {
     original: string;
+    large2x: string;
     large: string;
     medium: string;
+    small: string;
     tiny: string;
   };
 }
@@ -34,4 +36,17 @@ export async function buscarFotos(query: string): Promise<Foto[]> {
 
   const data = await res.json();
   return data.photos;
+}
+
+// Trae una foto puntual por su ID
+export async function obtenerFoto(id: string): Promise<Foto> {
+  const res = await fetch(`${BASE_URL}/photos/${id}`, {
+    headers: { Authorization: API_KEY },
+  });
+
+  if (!res.ok) {
+    throw new Error("No se pudo cargar la foto");
+  }
+
+  return res.json();
 }

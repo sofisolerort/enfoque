@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { buscarFotos, type Foto } from "../api/pexels";
+import { Link } from "react-router-dom";
 
 const CATEGORIAS = [
   "Naturaleza",
@@ -82,12 +83,9 @@ function Home() {
       {!cargando && !error && fotos.length > 0 && (
         <section className="photo-grid">
           {fotos.map((foto) => (
-            <img
-              key={foto.id}
-              className="photo-card"
-              src={foto.src.medium}
-              alt={foto.alt}
-            />
+            <Link key={foto.id} to={`/foto/${foto.id}`}>
+              <img className="photo-card" src={foto.src.large} alt={foto.alt} />
+            </Link>
           ))}
         </section>
       )}
