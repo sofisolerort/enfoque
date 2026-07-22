@@ -269,3 +269,22 @@
   margin: 16px 0 32px;
   font-size: 18px;
 }
+
+.footer {
+  margin-top: 80px;
+  padding: 32px 64px;
+  border-top: 1px solid var(--outline);
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.footer a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.footer-autor {
+  font-family: var(--font-title);
+}

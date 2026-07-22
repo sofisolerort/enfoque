@@ -37,7 +37,7 @@ function Detalle() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Ver perfil en Pexels
+            Foto de {foto.photographer} en Pexels
           </a>
         </div>
 

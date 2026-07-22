@@ -21,6 +21,20 @@ function App() {
         <Route path="/foto/:id" element={<Detalle />} />
         <Route path="/favoritos" element={<Favoritos />} />
       </Routes>
+
+      <footer className="footer">
+        <p>
+          Fotos provistas por{" "}
+          <a
+            href="https://www.pexels.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pexels
+          </a>
+        </p>
+        <p className="footer-autor">Un proyecto de Sofía Soler</p>
+      </footer>
     </div>
   );
 }
